@@ -1,0 +1,4 @@
+2,3,"You are traveling through a maze and come to a fork, will you go left (2) or right (3)?"
+3,4,"You have come to another fork, will you go left (3) or right (4)?"
+ENDING,"You're attacked by a minotaur"
+ENDING,"You escape the maze"
