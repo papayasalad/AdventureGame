@@ -1,4 +1,3 @@
-import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -21,17 +20,6 @@ public class PageNode implements Comparable<PageNode>{
     public Set<PageNode> getChildren() {
         return children;
     }
-
-//    public void addChildren(String[] pageList) {
-//         if (!isEnding) {
-////             System.out.print("children: "); // to be deleted
-//             for (int i = 0; i < pageList.length - 1; i++) {
-//
-//                 addChild(new PageNode(Integer.parseInt(pageList[i])));
-////                 System.out.print(pageList[i] + " "); // to be deleted
-//             }
-//         }
-//    }
 
     public void addChild(PageNode node) {
         children.add(node);

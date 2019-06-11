@@ -33,25 +33,28 @@ public class PageTree {
     }
 
     public List<PageNode> cheat(int desiredEnding) {
-        return cheat(new ArrayList<>(), root, desiredEnding);
+        List<PageNode> path = new ArrayList<>();
+        path.add(root);
+        cheat(path, desiredEnding);
+        return path;
     }
 
-    private List<PageNode> cheat(List<PageNode> list, PageNode root, int desireEnding) {
-        list.add(root);
-        if (root != null) {
-            if (root.getPageNumber() == desireEnding) {
-                return list;
-            } else {
-                for (PageNode child : root.getChildren()) {
-                    List<PageNode> result = cheat(list, child, desireEnding);
-                    if (result.get(result.size() - 1) != null) {
-                        return result;
-                    }
-                }
+    private boolean cheat(List<PageNode> path, int desireEnding) {
+        PageNode current = path.get(path.size() - 1);
+        if (current.getPageNumber() == desireEnding) {
+            return true;
+        }
 
+        else if (!current.isEnding()) {
+            for (PageNode child : current.getChildren()) {
+                path.add(child);
+                if(cheat(path, desireEnding)){
+                    return true;
+                }
+                path.remove(child);
             }
         }
-        return list;
+        return false;
     }
 
     public void printTree() {

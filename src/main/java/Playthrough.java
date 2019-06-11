@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Playthrough {
     private LinkedList<PageNode> choices = new LinkedList<>();
@@ -34,18 +33,7 @@ public class Playthrough {
             Scanner scan = new Scanner(System.in);
             int num = scan.nextInt();
             current = current.getChild(num);
-
-//            do {
-//                System.out.println("Choose an option: " + options.substring(0, options.length() - 2));
-//                Scanner scan = new Scanner(System.in);
-//                int num = scan.nextInt();
-//                current = current.getChild(num);
-//                if (current == null) {
-//                    System.out.print("Invalid number, please try again.");
-//                }
-//            } while (current == null);
             choices.add(current);
-
         } while (!current.isEnding());
         System.out.println(current.getText());
     }
