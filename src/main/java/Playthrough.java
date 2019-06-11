@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Playthrough {
     private LinkedList<PageNode> choices = new LinkedList<>();
@@ -8,9 +9,52 @@ public class Playthrough {
         this.book = book;
     }
 
-    public void playGame() { }
+    public void playGame() {
+        playGame(0);
+    }
 
-    public void playGame(String option) { }
+    public void playGame(int pageNumber) {
+        PageNode current;
+        if (pageNumber == 0) {
+            choices.clear();
+            current = book.getRoot();
+            choices.addFirst(current);
+        } else {
+            truncateChoices(pageNumber);
+            current = choices.getLast();
+        }
 
-    public void truncateChoices(int pageNumber) { }
+        do {
+            System.out.println(current.getText());
+            String options = "";
+            for (PageNode child : current.getChildren()) {
+                options += child.getPageNumber() + ", ";
+            }
+            System.out.println("Choose an option: " + options.substring(0, options.length() - 2));
+            Scanner scan = new Scanner(System.in);
+            int num = scan.nextInt();
+            current = current.getChild(num);
+
+//            do {
+//                System.out.println("Choose an option: " + options.substring(0, options.length() - 2));
+//                Scanner scan = new Scanner(System.in);
+//                int num = scan.nextInt();
+//                current = current.getChild(num);
+//                if (current == null) {
+//                    System.out.print("Invalid number, please try again.");
+//                }
+//            } while (current == null);
+            choices.add(current);
+
+        } while (!current.isEnding());
+        System.out.println(current.getText());
+    }
+
+    public void truncateChoices(int pageNumber) {
+        while (choices.getLast().getPageNumber() != pageNumber) {
+            choices.removeLast();
+        }
+    }
+
+    public LinkedList<PageNode> getChoices() { return this.choices; }
 }
