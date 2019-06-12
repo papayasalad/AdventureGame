@@ -62,9 +62,7 @@ public class PageTree {
     }
 
     private void printTree(PageNode root) {
-        if (root == null) {
-            return;
-        } else {
+        if (root != null) {
             System.out.println("\npage is " + root.getPageNumber());
             System.out.println("text is " + root.getText());
             System.out.printf("is %s ending\n", root.isEnding()? "" : "not");

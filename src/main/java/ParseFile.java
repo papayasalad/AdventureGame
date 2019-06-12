@@ -18,7 +18,7 @@ public class ParseFile {
             String line = scan.nextLine();
             String[] data = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
             String text = data[data.length - 1];
-            boolean isEnding = data[0].equals("ENDING")? true : false;
+            boolean isEnding = data[0].equals("ENDING");
 
             PageNode node = tree.getNode(page);
             node.setText(text);
